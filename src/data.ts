@@ -166,7 +166,6 @@ export const EXECUTIVES: ExecutiveItem[] = [
     name: 'Paul Toku Appiatu',
     role: 'Director & Chief Executive Officer (CEO)',
     bio: 'Paves the strategic vision for Patmos Dimension Group, driving bilateral commerce, international joint ventures, and governmental compliance between Scandinavian and West African hubs.',
-    imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80',
     email: 'p.appiatu@patmosdimension.com'
   },
   {
@@ -174,7 +173,6 @@ export const EXECUTIVES: ExecutiveItem[] = [
     name: 'Edward Ofori',
     role: 'Logistics, Planning and Operations Manager',
     bio: 'Leads intercontinental freight operations, secure cargo warehousing, compliance, and port facilitation, ensuring frictionless bilateral shipping pipelines.',
-    imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&h=400&q=80',
     email: 'e.ofori@patmosdimension.com'
   },
   {
@@ -182,7 +180,6 @@ export const EXECUTIVES: ExecutiveItem[] = [
     name: 'Obour Akiti A. Kisseh',
     role: 'International Programs and Partnerships Manager',
     bio: 'Directs accredited academic placements, clinical internship coordination, and cross-border corporate stakeholder alliances across our dual networks.',
-    imageUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&h=400&q=80',
     email: 'o.kisseh@patmosdimension.com'
   }
 ];

@@ -44,7 +44,6 @@ export interface ExecutiveItem {
   role: string;
   location?: string;
   bio: string;
-  imageUrl: string;
   email?: string;
   flag?: string; // E.g., "🇩🇰" or "🇬🇭"
 }

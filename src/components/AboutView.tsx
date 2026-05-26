@@ -144,16 +144,21 @@ export default function AboutView({ onPageChange }: AboutViewProps) {
                 variants={itemVariants}
                 className="bg-white rounded-2xl border border-gray-100/90 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group"
               >
-                {/* Executive Headshot container */}
-                <div className="relative aspect-square w-full bg-gray-100 overflow-hidden">
-                  <img
-                    src={exec.imageUrl}
-                    alt={exec.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-
+                {/* Executive Avatar Icon */}
+<div className="relative w-full aspect-square bg-gradient-to-br from-brand-blue-900 to-brand-blue-950 flex items-center justify-center overflow-hidden">
+  <div className="absolute inset-0 opacity-10">
+    <div className="absolute top-4 right-4 w-24 h-24 bg-brand-gold-400 rounded-full blur-2xl" />
+    <div className="absolute bottom-4 left-4 w-16 h-16 bg-brand-gold-400 rounded-full blur-xl" />
+  </div>
+  <div className="relative z-10 flex flex-col items-center gap-3">
+    <div className="w-20 h-20 rounded-full bg-white/10 border-2 border-brand-gold-400/40 flex items-center justify-center">
+      <LucideIcon name="User" size={36} className="text-brand-gold-400" />
+    </div>
+    <span className="font-mono text-[9px] uppercase tracking-widest text-white/40 font-bold">
+      {exec.role.split(' ')[0]}
+    </span>
+  </div>
+</div>
                 {/* Card Content */}
                 <div className="p-5 flex-grow flex flex-col justify-between space-y-4">
                   <div className="space-y-2">

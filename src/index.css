@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Inter", "Helvetica Neue", Arial, sans-serif;
+  
+  --color-brand-blue-50: #f8fafc;
+  --color-brand-blue-100: #e2e8f0;
+  --color-brand-blue-200: #cbd5e1;
+  --color-brand-blue-300: #94a3b8;
+  --color-brand-blue-400: #64748b;
+  --color-brand-blue-500: #475569;
+  --color-brand-blue-600: #334155;
+  --color-brand-blue-700: #1e293b;
+  --color-brand-blue-800: #0f172a;
+  --color-brand-blue-900: #0f172a;
+  --color-brand-blue-950: #0f172a;
+  
+  --color-brand-gold-50: #fefdf5;
+  --color-brand-gold-100: #fdfad9;
+  --color-brand-gold-200: #f9f1b2;
+  --color-brand-gold-300: #eace60;
+  --color-brand-gold-400: #e2c044;
+  --color-brand-gold-500: #d4af37;
+  --color-brand-gold-600: #be9826;
+  --color-brand-gold-700: #9a731b;
+  --color-brand-gold-800: #7d5a1b;
+  --color-brand-gold-900: #68481a;
+  --color-brand-gold-950: #3c2608;
+}
+
+@utility text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@utility text-shadow-md {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
+@utility transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+@utility backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@utility rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@utility service-card {
+  transition: all 0.2s ease-in-out;
+}
+
+@utility map-placeholder {
+  background: linear-gradient(45deg, #e2e8f0 25%, #cbd5e1 25%, #cbd5e1 50%, #e2e8f0 50%, #e2e8f0 75%, #cbd5e1 75%, #cbd5e1 100%);
+  background-size: 20px 20px;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: #f8fafc;
+    color: #1e293b;
+    scroll-behavior: smooth;
+  }
+}

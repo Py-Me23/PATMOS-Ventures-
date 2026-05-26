@@ -1,0 +1,6 @@
+{
+  "name": "Patmos Dimension Group",
+  "description": "International logistics and business facilitation company operating in Denmark and Ghana, providing cross-border freight, consultation, and trade services.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

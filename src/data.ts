@@ -50,15 +50,15 @@ export const SERVICES: ServiceItem[] = [
     id: 'internship-coordination',
     title: 'International Internships',
     iconName: 'GraduationCap',
-    summary: 'Connecting student interns and skilled professionals with clinical, social, and educational placements in Ghana.',
-    detailedDescription: 'Coordinating accredited placements for Danish students in medical, educational, and social work facilities.',
+    summary: 'Connecting student interns and skilled professionals with clinical, social, and educational placements in Europe.',
+    detailedDescription: 'Facilitating internship placements for students and graduates through trusted institutional partnerships.',
     features: [
       'Comprehensive pre-departure training and local cultural orientation',
       'Accredited clinical placements for ECTS academic credits',
       'Secure student housing, airport pickup, and 24/7 welfare safety'
     ],
     denmarkOperations: 'University partner coordination and application pre-departure screening.',
-    ghanaOperations: 'On-site welfare inspectors and accredited hosting institutions in Accra.',
+    ghanaOperations: 'On-site welfare inspectors and accredited hosting institutions in Europe.',
     bgGradient: 'from-brand-blue-900 to-brand-blue-800'
   },
   {
@@ -69,7 +69,7 @@ export const SERVICES: ServiceItem[] = [
     detailedDescription: 'Coordinating physical transport routing and shared warehouses to make cross-border scaling secure.',
     features: [
       'Multi-axle trucking and heavy-duty shipping logistics',
-      'Tema & Accra warehouse storage rentals with security coverage',
+      'Cape Coast & Accra warehouse storage rentals with security coverage',
       'Frictionless regional delivery and supply loop integration'
     ],
     denmarkOperations: 'Port-to-port scheduling and heavy cargo transport packing.',
@@ -80,12 +80,12 @@ export const SERVICES: ServiceItem[] = [
     id: 'used-items',
     title: 'Premium Home Goods Sales',
     iconName: 'ShoppingBag',
-    summary: 'Sourcing, import, and sale of high-integrity home appliances and durable Scandinavian goods in Ghana.',
+    summary: 'Import, Export and sale of high-quality Scandinavian home appliances and household goods in Ghana.',
     detailedDescription: 'Hand-selected premium household items and appliances and supplying them directly to Tema & Accra.',
     features: [
       'Strict functionality selection - only certified electronic goods',
       'Eco-responsible reuse promoting sustainable product lifecycles',
-      'Tema-Accra showrooms with local home delivery options'
+      'Cape Coast-Accra showrooms with local home delivery options'
     ],
     denmarkOperations: 'Sourcing, testing, and shipping container packing in Copenhagen.',
     ghanaOperations: 'Accra Retail showrooms, verified sales, and direct delivery operations.',
@@ -97,22 +97,22 @@ export const OFFICES: OfficeBranch[] = [
   {
     id: 'branch-denmark',
     country: 'Denmark',
-    city: 'Copenhagen',
-    address: 'Amager Strandvej 390, 2770 Kastrup, Copenhagen, Denmark',
-    phone: '+45 42 55 90 90',
-    phoneRaw: '4542559090',
-    email: 'denmark@patmosdimension.com',
+    city: 'Vejle',
+    address: 'Moldevej 27 , 7100 Vejle, Denmark',
+    phone: '+452 62 97 816',
+    phoneRaw: '4526297816',
+    email: 'info@patmosdimensiongroup.com',
     workingHours: 'Mon - Fri: 08:30 - 17:00 (CET)',
     mapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2251.353723381023!2d12.6366914!3d55.6515865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46525287e07ca071%3A0xe5cd6e969a5ad56f!2sAmager%20Strandvej%2C%20K%C3%B8benhavn!5e0!3m2!1sen!2sdk!4v1700000000000!5m2!1sen!2sdk'
   },
   {
     id: 'branch-ghana',
     country: 'Ghana',
-    city: 'Accra',
-    address: 'Patmos Plaza, Spintex Road, Accra, Ghana',
-    phone: '+233 24 456 7890',
-    phoneRaw: '233244567890',
-    email: 'ghana@patmosdimension.com',
+    city: 'Cape Coast',
+    address: 'Adjacent Regional Passport Office, Cape Coast, Ghana',
+    phone: '+233 541 269 465 or +233 532 670 899',
+    phoneRaw: '233541269465 or 233532670899',
+    email: 'info@patmosdimensiongroup.com',
     workingHours: 'Mon - Fri: 08:00 - 17:00 (GMT)',
     mapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15882.90382333469!2d-0.1251347!3d5.6213769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf8566ddbb57b5%3A0xffe742886fdf4000!2sSpintex%20Rd%2C%20Accra%2C%20Ghana!5e0!3m2!1sen!2sgh!4v1700000000001!5m2!1sen!2sgh'
   }
@@ -166,21 +166,21 @@ export const EXECUTIVES: ExecutiveItem[] = [
     name: 'Paul Toku Appiatu',
     role: 'Director & Chief Executive Officer (CEO)',
     bio: 'Paves the strategic vision for Patmos Dimension Group, driving bilateral commerce, international joint ventures, and governmental compliance between Scandinavian and West African hubs.',
-    email: 'p.appiatu@patmosdimension.com'
+    email: 'info@patmosdimensiongroup.com'
   },
   {
     id: 'exec-2',
     name: 'Edward Ofori',
     role: 'Logistics, Planning and Operations Manager',
     bio: 'Leads intercontinental freight operations, secure cargo warehousing, compliance, and port facilitation, ensuring frictionless bilateral shipping pipelines.',
-    email: 'e.ofori@patmosdimension.com'
+    email: 'info@patmosdimensiongroup.com'
   },
   {
     id: 'exec-3',
     name: 'Obour Akiti A. Kisseh',
     role: 'International Programs and Partnerships Manager',
     bio: 'Directs accredited academic placements, clinical internship coordination, and cross-border corporate stakeholder alliances across our dual networks.',
-    email: 'o.kisseh@patmosdimension.com'
+    email: 'info@patmosdimensiongroup.com'
   }
 ];
 

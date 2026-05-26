@@ -27,96 +27,123 @@ const CAROUSEL_IMAGES = [
   }
 ];
 
-function ServiceFlashCard({ 
-  srv, 
-  onViewDetails 
-}: { 
-  srv: ServiceItem; 
-  onViewDetails: (id: string) => void 
+function ServiceSlideshow({
+  services,
+  onViewDetails,
+}: {
+  services: ServiceItem[];
+  onViewDetails: (id: string) => void;
 }) {
+  const [active, setActive] = useState(0);
+
+  const prev = () => setActive((p) => (p - 1 + services.length) % services.length);
+  const next = () => setActive((p) => (p + 1) % services.length);
+
+  // Auto-advance every 5 seconds
+  useEffect(() => {
+    const t = setInterval(next, 5000);
+    return () => clearInterval(t);
+  }, []);
+
+  const srv = services[active];
+
   return (
-    <div 
-      className="group h-[330px] w-full cursor-pointer perspective-1000"
-    >
-      <div 
-        className="relative w-full h-full duration-700 transform-style-3d transition-transform group-hover:rotate-y-180"
-      >
-        {/* FRONT SIDE */}
-        <div className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-[#0c2035] via-[#071524] to-[#030a12] border border-white/10 backface-hidden flex flex-col justify-between p-7">
-          {/* Top Bar Accent */}
-          <div className="flex justify-between items-center">
+    <div className="relative max-w-3xl mx-auto">
+      {/* Slide */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={srv.id}
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -60 }}
+          transition={{ duration: 0.45, ease: 'easeInOut' }}
+          className="rounded-2xl bg-gradient-to-br from-brand-blue-900 to-brand-blue-950 border border-white/10 shadow-xl p-8 sm:p-12 text-white flex flex-col gap-6"
+        >
+          {/* Top */}
+          <div className="flex items-center justify-between">
             <span className="text-[9px] uppercase font-mono tracking-widest font-black text-brand-gold-400">
               Bilateral Gateway
             </span>
-            <div className="w-1.5 h-1.5 rounded-full bg-brand-gold-400 animate-pulse" />
-          </div>
-
-          {/* Centered Area with Icon & Title */}
-          <div className="flex flex-col items-center text-center space-y-4 my-auto">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-gold-400/15 to-brand-gold-300/5 border border-brand-gold-400/25 flex items-center justify-center text-brand-gold-400 shadow-xl group-hover:scale-110 group-hover:border-brand-gold-400/55 group-hover:bg-brand-gold-400/25 transition-all duration-500">
-              <LucideIcon name={srv.iconName} size={32} />
-            </div>
-            
-            <div className="space-y-1.5">
-              <h3 className="font-display font-black text-base tracking-tight leading-snug text-white">
-                {srv.title}
-              </h3>
-              <p className="text-[11px] text-gray-300 max-w-[220px] mx-auto font-sans leading-relaxed">
-                {srv.summary}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* BACK SIDE */}
-        <div className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-brand-blue-950 to-[#050c14] border border-brand-gold-400/30 backface-hidden rotate-y-180 p-6 flex flex-col justify-between text-white">
-          <div className="space-y-4">
-            <div className="flex justify-between items-center pb-2.5 border-b border-white/10">
-              <div className="flex items-center gap-2">
-                <span className="text-brand-gold-400">
-                  <LucideIcon name={srv.iconName} size={15} />
-                </span>
-                <span className="font-sans font-bold text-[10px] uppercase tracking-widest text-brand-gold-400">
-                  Detailed Scope
-                </span>
-              </div>
-              <span className="text-[9px] uppercase tracking-wider font-bold font-mono bg-white/10 text-brand-gold-300 px-2.5 py-0.5 rounded border border-white/5">
-                Back
-              </span>
-            </div>
-
-            <div className="space-y-2.5">
-              <h3 className="font-display font-black text-sm text-brand-gold-300 leading-tight">
-                {srv.title}
-              </h3>
-              <p className="text-xs text-gray-200 leading-relaxed font-sans font-medium">
-                {srv.summary}
-              </p>
-              <div className="bg-brand-blue-900/40 p-3 rounded border border-white/5">
-                <p className="text-[11px] text-gray-300 font-sans leading-relaxed">
-                  {srv.detailedDescription}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px] font-bold">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onViewDetails(srv.id);
-              }}
-              className="text-brand-gold-400 hover:text-brand-gold-300 flex items-center gap-1.5 cursor-pointer hover:underline transition-colors"
-            >
-              Inquire & Book
-              <LucideIcon name="ChevronRight" size={12} />
-            </button>
-            <span className="text-[9px] font-mono text-gray-400 flex items-center gap-1.5 font-medium select-none">
-              Flip back
-              <LucideIcon name="RefreshCw" size={9} />
+            <span className="text-[9px] font-mono text-gray-400">
+              {active + 1} / {services.length}
             </span>
           </div>
+
+          {/* Icon + Title */}
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+            <div className="w-16 h-16 shrink-0 rounded-2xl bg-brand-gold-400/15 border border-brand-gold-400/25 flex items-center justify-center text-brand-gold-400 shadow-xl">
+              <LucideIcon name={srv.iconName} size={32} />
+            </div>
+            <div className="space-y-2 text-center sm:text-left">
+              <h3 className="font-display font-black text-xl tracking-tight text-white">
+                {srv.title}
+              </h3>
+              <p className="text-sm text-gray-300 leading-relaxed font-sans">
+                {srv.summary}
+              </p>
+            </div>
+          </div>
+
+          {/* Detailed description */}
+          <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+            <p className="text-xs text-gray-300 leading-relaxed font-sans">
+              {srv.detailedDescription}
+            </p>
+          </div>
+
+          {/* Features */}
+          <ul className="space-y-2">
+            {srv.features.map((f, i) => (
+              <li key={i} className="flex items-start gap-2 text-xs text-gray-200 font-sans">
+                <LucideIcon name="CheckCircle" size={14} className="text-brand-gold-400 mt-0.5 shrink-0" />
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          {/* CTA */}
+          <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+            <button
+              onClick={() => onViewDetails(srv.id)}
+              className="inline-flex items-center gap-1.5 text-xs font-bold font-mono uppercase tracking-wider text-brand-gold-400 hover:text-brand-gold-300 transition-colors cursor-pointer"
+            >
+              Inquire & Book
+              <LucideIcon name="ChevronRight" size={13} />
+            </button>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Prev / Next controls */}
+      <div className="flex items-center justify-center gap-4 mt-8">
+        <button
+          onClick={prev}
+          className="w-10 h-10 rounded-full bg-brand-blue-950 border border-white/10 text-white flex items-center justify-center hover:border-brand-gold-400/40 hover:text-brand-gold-400 transition-all cursor-pointer"
+        >
+          <LucideIcon name="ChevronLeft" size={18} />
+        </button>
+
+        {/* Dot indicators */}
+        <div className="flex items-center gap-2">
+          {services.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className={`rounded-full transition-all cursor-pointer ${
+                i === active
+                  ? 'w-6 h-2 bg-brand-gold-400'
+                  : 'w-2 h-2 bg-gray-300 hover:bg-brand-gold-300'
+              }`}
+            />
+          ))}
         </div>
+
+        <button
+          onClick={next}
+          className="w-10 h-10 rounded-full bg-brand-blue-950 border border-white/10 text-white flex items-center justify-center hover:border-brand-gold-400/40 hover:text-brand-gold-400 transition-all cursor-pointer"
+        >
+          <LucideIcon name="ChevronRight" size={18} />
+        </button>
       </div>
     </div>
   );
@@ -288,62 +315,29 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
         </div>
       </section>
 
-      {/* STATS STRIP SECTION */}
-      <section className="bg-white border-y border-gray-100 py-10 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center md:border-r border-gray-100 last:border-0 py-2">
-              <p className="font-display text-3xl sm:text-4xl font-extrabold text-brand-blue-950">12,000+</p>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mt-1">Cargo Shipments Handled</p>
-            </div>
-            <div className="text-center md:border-r border-gray-100 last:border-0 py-2">
-              <p className="font-display text-3xl sm:text-4xl font-extrabold text-brand-blue-950">100%</p>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mt-1">Schengen & GIPC Vetted</p>
-            </div>
-            <div className="text-center md:border-r border-gray-100 last:border-0 py-2">
-              <p className="font-display text-3xl sm:text-4xl font-extrabold text-brand-blue-950">100+</p>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mt-1">Danish Interns Placed</p>
-            </div>
-            <div className="text-center py-2">
-              <p className="font-display text-3xl sm:text-4xl font-extrabold text-brand-blue-950">24 / 7</p>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mt-1">Active Ground Support</p>
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
       {/* 3. SERVICES GRID SECTION - Clear, interactive bento cards */}
-      <section id="services-section-anchor" className="py-24 bg-white relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="font-bold text-xs uppercase tracking-widest text-brand-gold-600 font-sans px-3 py-1 rounded bg-brand-gold-50 border border-brand-gold-100 inline-block">
-              Tailored Logistics & Facilitation
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-brand-blue-950 tracking-tight">
-              What We Offer
-            </h2>
-            <p className="text-sm text-gray-500 leading-relaxed">
-              Frictionless end-to-end cargo clearing, business advisory, and program placements.
-            </p>
-          </div>
 
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {SERVICES.map((srv) => (
-              <motion.div key={srv.id} variants={itemVariants}>
-                <ServiceFlashCard srv={srv} onViewDetails={handleServiceClick} />
-              </motion.div>
-            ))}
-          </motion.div>
+<section id="services-section-anchor" className="py-24 bg-white relative z-10">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-        </div>
-      </section>
+    <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <span className="font-bold text-xs uppercase tracking-widest text-brand-gold-600 font-sans px-3 py-1 rounded bg-brand-gold-50 border border-brand-gold-100 inline-block">
+        Tailored Logistics & Facilitation
+      </span>
+      <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-brand-blue-950 tracking-tight">
+        What We Offer
+      </h2>
+      <p className="text-sm text-gray-500 leading-relaxed">
+        Frictionless end-to-end cargo clearing, business advisory, and program placements.
+      </p>
+    </div>
+
+    <ServiceSlideshow services={SERVICES} onViewDetails={handleServiceClick} />
+
+  </div>
+</section>
 
       {/* 4. WHY CHOOSE US - High credibility values */}
       <section className="py-22 bg-[#02182c] text-white relative overflow-hidden">
@@ -430,7 +424,7 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
                 </h2>
                 
                 <p className="text-xs sm:text-sm text-gray-300 max-w-2xl leading-relaxed">
-                  Our Copenhagen and Accra desks are active. Contact a bilateral coordinator today.
+                  Our Copenhagen, Cape Coast and Accra desks are active. Contact a bilateral coordinator today.
                 </p>
               </div>
 

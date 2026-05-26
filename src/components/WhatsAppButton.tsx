@@ -58,7 +58,7 @@ export default function WhatsAppButton() {
           <div className="space-y-2.5">
             {/* Denmark Hub Advisor */}
             <button
-              onClick={() => openWhatsApp('4542559090', 'Denmark')}
+              onClick={() => openWhatsApp('4526297816', 'Denmark')}
               className="w-full flex items-center justify-between p-3 rounded-lg border border-gray-100 hover:border-brand-blue-300 hover:bg-brand-blue-50/50 transition-all text-left group"
             >
               <div className="flex items-center gap-2.5">

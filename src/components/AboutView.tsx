@@ -65,7 +65,11 @@ export default function AboutView({ onPageChange }: AboutViewProps) {
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-sans font-medium">
-              We streamline international transport, corporate registrations, and educational programs through our fully vetted Copenhagen and Accra offices. Border clearing and academic placements require absolute vetting and standards. By leveraging our dual support desks, we offer secure, stress-free compliance.
+             Patmos Dimension Group is an international business company operating in Denmark and Ghana, providing services in logistics, courier solutions, import and export, consultancy, international internship coordination, and home goods sales.
+
+The company was previously established in Ghana under the name Patmos Multi-Purpose Company Ltd in year 2014 ,and now operates as Patmos Dimension Group to ensure a unified identity and operational consistency with its Denmark branch.
+
+We are committed to professionalism, reliability, integrity, and customer satisfaction while building strong business connections between Africa and Europe.
             </p>
             <div className="pt-2">
               <button

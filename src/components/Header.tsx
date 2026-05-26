@@ -48,46 +48,50 @@ export default function Header({ currentPage, onPageChange }: HeaderProps) {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
-          {/* Brand Logo - Elite gold-blue emblem with motion animation */}
-          <button 
-            onClick={() => handleLinkClick('home')}
-            className="flex items-center gap-3 group text-left cursor-pointer focus:outline-none"
-            aria-label="Patmos Dimension Group Home"
-          >
-            <motion.div 
-              initial={{ scale: 0.8, opacity: 0, rotate: -15 }}
-              animate={{ scale: 1, opacity: 1, rotate: 0 }}
-              whileHover={{ 
-                scale: 1.1, 
-                rotate: 5,
-                boxShadow: "0 4px 15px rgba(245, 158, 11, 0.2)"
-              }}
-              whileTap={{ scale: 0.92, rotate: -2 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="w-10 h-10 bg-white rounded-md flex items-center justify-center font-bold text-brand-blue-950 text-xl border-b-4 border-brand-gold-500 shrink-0 shadow-sm"
-            >
-              P
-            </motion.div>
-            
-            <motion.div 
-              initial={{ x: -10, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.4, ease: "easeOut" }}
-              className="flex flex-col"
-            >
-              <span className={`font-sans text-sm sm:text-base font-bold leading-none tracking-tight transition-colors duration-300 ${
-                isScrolled ? 'text-brand-blue-950' : 'text-white'
-              }`}>
-                PATMOS DIMENSION
-              </span>
-              <span className={`text-[9px] uppercase tracking-[0.2em] font-semibold transition-colors duration-300 mt-0.5 ${
-                isScrolled ? 'text-brand-gold-600' : 'text-brand-gold-500'
-              }`}>
-                Group International
-              </span>
-            </motion.div>
-          </button>
+         {/* Brand Logo - Elite gold-blue emblem with motion animation */}
+<button 
+  onClick={() => handleLinkClick('home')}
+  className="flex items-center gap-3 group text-left cursor-pointer focus:outline-none"
+  aria-label="Patmos Dimension Group Home"
+>
+  <motion.div 
+    initial={{ scale: 0.8, opacity: 0, rotate: -15 }}
+    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+    whileHover={{ 
+      scale: 1.1, 
+      rotate: 5,
+      boxShadow: "0 4px 15px rgba(245, 158, 11, 0.2)"
+    }}
+    whileTap={{ scale: 0.92, rotate: -2 }}
+    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    className="w-10 h-10 bg-white rounded-md flex items-center justify-center font-bold text-brand-blue-950 text-xl border-b-4 border-brand-gold-500 shrink-0 shadow-sm"
+  >
+    P
+  </motion.div>
 
+  <div className="flex flex-col overflow-hidden">
+    {/* Slide-in letters for PATMOS DIMENSION GROUP */}
+    <div className="flex items-center gap-0 overflow-hidden">
+      {"PATMOS DIMENSION GROUP".split("").map((char, i) => (
+        <motion.span
+          key={i}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            delay: 0.03 * i,
+            duration: 0.35,
+            ease: "easeOut",
+          }}
+          className={`font-sans font-bold leading-none tracking-tight transition-colors duration-300 text-sm sm:text-base ${
+            isScrolled ? 'text-brand-blue-950' : 'text-white'
+          } ${char === " " ? "w-1.5" : ""}`}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </div>
+  </div>
+</button>
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => {

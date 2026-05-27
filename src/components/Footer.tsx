@@ -41,8 +41,7 @@ export default function Footer({ onPageChange }: FooterProps) {
                 </div>
               </div>
               <div>
-                <h3 className="font-display font-black text-sm tracking-widest text-white">PATMOS DIMENSION</h3>
-                <span className="text-[10px] uppercase font-bold text-brand-gold-400 tracking-widest">Global Logistics Group</span>
+                <h3 className="font-display font-black text-sm tracking-widest text-white">PATMOS DIMENSION GROUP</h3>
               </div>
             </button>
             
@@ -103,6 +102,12 @@ export default function Footer({ onPageChange }: FooterProps) {
                   <p className="text-[11px] font-semibold text-brand-gold-400 pl-5">
                     Tel: {branch.phone}
                   </p>
+                  {branch.regNumber && (
+                    <p className="text-[11px] text-gray-400 pl-5 flex items-center gap-1">
+                      <LucideIcon name="FileText" size={10} className="text-brand-gold-400/70" />
+                      {branch.regNumber}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>

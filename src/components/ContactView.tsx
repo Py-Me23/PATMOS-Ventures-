@@ -6,7 +6,6 @@ import emailjs from '@emailjs/browser';
 export default function ContactView() {
   const [selectedBranchId, setSelectedBranchId] = useState(OFFICES[0].id);
   
-  // Form submission state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,7 +19,6 @@ export default function ContactView() {
   const [sendResult, setSendResult] = useState<'idle' | 'success' | 'error'>('idle');
   const [feedbackMsg, setFeedbackMsg] = useState('');
 
-  // Prefilled helper tags
   const QUICK_SUBJECTS = [
     'Cargo Shipping Quote (DK-GH)',
     'Parcel Express Courier Courier',
@@ -51,7 +49,6 @@ export default function ContactView() {
     setIsSending(true);
     setSendResult('idle');
 
-    // Standard params for EmailJS mapping
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
@@ -61,15 +58,7 @@ export default function ContactView() {
       message_content: formData.message,
     };
 
-    /**
-     * We attempt to perform legitimate EmailJS sending.
-     * To protect local developer preview experience against lacking API keys,
-     * we inspect window env or fall back with a beautiful high-fidelity micro loader simulation 
-     * to ensure the corporate UX remains perfect.
-     */
     try {
-      // Look for public EmailJS credentials in process.env / window setup if available,
-      // otherwise run the pristine developer validation loader.
       const serviceId = (window as any)._ENV_?.EMAILJS_SERVICE_ID || '';
       const templateId = (window as any)._ENV_?.EMAILJS_TEMPLATE_ID || '';
       const publicKey = (window as any)._ENV_?.EMAILJS_PUBLIC_KEY || '';
@@ -78,33 +67,15 @@ export default function ContactView() {
         await emailjs.send(serviceId, templateId, templateParams, publicKey);
         setSendResult('success');
         setFeedbackMsg('Your message was successfully routed to our dispatch coordinators! An agent from our office will reach out within 2 hours.');
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: 'Cargo Shipping Quote (DK-GH)',
-          message: '',
-          officeCountry: 'Denmark'
-        });
+        setFormData({ name: '', email: '', phone: '', subject: 'Cargo Shipping Quote (DK-GH)', message: '', officeCountry: 'Denmark' });
       } else {
-        // High-fidelity Simulation fallback for demo
         await new Promise(resolve => setTimeout(resolve, 1800));
         setSendResult('success');
-        setFeedbackMsg('Inquiry routed! [Demo Mode Active] Your message has been prepared for Patmos Dimension Group’s direct servers. Our Copenhagen or Accra desk will contact you shortly.');
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: 'Cargo Shipping Quote (DK-GH)',
-          message: '',
-          officeCountry: 'Denmark'
-        });
+        setFeedbackMsg('Inquiry routed! [Demo Mode Active] Your message has been prepared for Patmos Dimension Group\'s direct servers. Our Copenhagen or Accra desk will contact you shortly.');
+        setFormData({ name: '', email: '', phone: '', subject: 'Cargo Shipping Quote (DK-GH)', message: '', officeCountry: 'Denmark' });
       }
     } catch (err: any) {
       console.error('EmailJS Send error:', err);
-      // Fallback fallback success or message representation
       setSendResult('error');
       setFeedbackMsg('Failed to route via automated servers. Please click the Floating WhatsApp widget on the right for immediate 24/7 priority booking, or copy our direct email links.');
     } finally {
@@ -150,7 +121,7 @@ export default function ContactView() {
                 </h3>
 
                 {/* Switcher Buttons */}
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-3 gap-3">
                   {OFFICES.map((branch) => {
                     const isSelected = branch.id === selectedBranchId;
                     return (
@@ -163,29 +134,38 @@ export default function ContactView() {
                             officeCountry: branch.country
                           }));
                         }}
-                        className={`p-3.5 rounded-xl border font-sans font-bold text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
+                        className={`p-3.5 rounded-xl border font-sans font-bold text-xs tracking-wider uppercase transition-all duration-300 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
                           isSelected
                             ? 'bg-brand-blue-950 border-brand-gold-400 text-white shadow-md'
                             : 'bg-slate-50 border-gray-100 text-slate-700 hover:bg-slate-100'
                         }`}
                       >
                         <span>{branch.country === 'Denmark' ? '🇩🇰' : '🇬🇭'}</span>
-                        <span>{branch.country}</span>
+                        <span>{branch.city}</span>
                       </button>
                     );
                   })}
                 </div>
 
-                {/* Branch Coordinates Details card */}
+                {/* Branch Details Card */}
                 <div className="p-4 rounded-xl bg-slate-50 border border-gray-100 space-y-4 text-xs">
+                  
+                  {/* Address + Reg Number */}
                   <div className="flex items-start gap-3">
                     <LucideIcon name="MapPin" className="text-brand-gold-500 shrink-0 mt-0.5" size={16} />
                     <div>
                       <h4 className="font-sans font-bold text-slate-900 uppercase tracking-wide">Physical Address</h4>
                       <p className="text-slate-600 mt-1 leading-normal font-sans">{currentBranch.address}</p>
+                      {currentBranch.regNumber && (
+                        <p className="text-slate-500 mt-1 font-sans flex items-center gap-1">
+                          <LucideIcon name="FileText" size={11} className="text-brand-gold-500 shrink-0" />
+                          {currentBranch.regNumber}
+                        </p>
+                      )}
                     </div>
                   </div>
 
+                  {/* Phone */}
                   <div className="flex items-start gap-3">
                     <LucideIcon name="Phone" className="text-brand-gold-500 shrink-0 mt-0.5" size={16} />
                     <div>
@@ -199,6 +179,7 @@ export default function ContactView() {
                     </div>
                   </div>
 
+                  {/* Email */}
                   <div className="flex items-start gap-3">
                     <LucideIcon name="Mail" className="text-brand-gold-500 shrink-0 mt-0.5" size={16} />
                     <div>
@@ -212,6 +193,7 @@ export default function ContactView() {
                     </div>
                   </div>
 
+                  {/* Working Hours */}
                   <div className="flex items-start gap-3">
                     <LucideIcon name="Clock" className="text-brand-gold-500 shrink-0 mt-0.5" size={16} />
                     <div>
@@ -219,9 +201,10 @@ export default function ContactView() {
                       <p className="text-slate-600 mt-1 font-sans">{currentBranch.workingHours}</p>
                     </div>
                   </div>
+
                 </div>
 
-                {/* Active Interactive Maps Embed Container */}
+                {/* Maps Embed */}
                 <div className="relative rounded-xl overflow-hidden h-64 border border-gray-200">
                   <iframe
                     title={`${currentBranch.city} branch direction map`}
@@ -251,7 +234,6 @@ export default function ContactView() {
                   </p>
                 </div>
 
-                {/* Form Action */}
                 <form onSubmit={handleFormSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
@@ -312,7 +294,6 @@ export default function ContactView() {
                     </div>
                   </div>
 
-                  {/* Subject Line prefilled triggers */}
                   <div className="space-y-1.5">
                     <label htmlFor="subject-input" className="block text-xs font-bold text-slate-700 uppercase tracking-wide">Subject Line</label>
                     <input
@@ -325,8 +306,6 @@ export default function ContactView() {
                       placeholder="e.g., Sea Freight Container Booking Quote"
                       className="w-full text-xs bg-slate-50 border border-gray-200 rounded-lg p-3 text-slate-800 focus:outline-none focus:border-brand-blue-600 transition-colors"
                     />
-
-                    {/* Quick Prefill Tags */}
                     <div className="pt-2">
                       <p className="text-[10px] text-gray-400 font-medium">Quick prefill options:</p>
                       <div className="flex flex-wrap gap-2 mt-1.5">
@@ -348,7 +327,6 @@ export default function ContactView() {
                     </div>
                   </div>
 
-                  {/* Message Field */}
                   <div className="space-y-1.5">
                     <label htmlFor="message-input" className="block text-xs font-bold text-slate-700 uppercase tracking-wide">Inquiry Message *</label>
                     <textarea
@@ -363,7 +341,6 @@ export default function ContactView() {
                     ></textarea>
                   </div>
 
-                  {/* Send response alerts */}
                   {sendResult === 'success' && (
                     <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex gap-2.5">
                       <LucideIcon name="CheckCircle2" className="text-emerald-500 shrink-0 mt-0.5" />
@@ -415,8 +392,6 @@ export default function ContactView() {
 
         </div>
       </section>
-
-
 
     </div>
   );

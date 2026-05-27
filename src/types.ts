@@ -20,6 +20,7 @@ export interface ServiceItem {
 export interface OfficeBranch {
   id: string;
   country: 'Denmark' | 'Ghana';
+  regNumber?: string;
   city: string;
   address: string;
   phone: string;

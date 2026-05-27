@@ -99,19 +99,33 @@ export const OFFICES: OfficeBranch[] = [
     country: 'Denmark',
     city: 'Vejle',
     address: 'Moldevej 27 , 7100 Vejle, Denmark',
-    phone: '+452 62 97 816',
+    regNumber: 'CVR No.: 41288248',
+    phone: '+45 26 29 78 16',
     phoneRaw: '4526297816',
     email: 'info@patmosdimensiongroup.com',
     workingHours: 'Mon - Fri: 08:30 - 17:00 (CET)',
     mapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2251.353723381023!2d12.6366914!3d55.6515865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46525287e07ca071%3A0xe5cd6e969a5ad56f!2sAmager%20Strandvej%2C%20K%C3%B8benhavn!5e0!3m2!1sen!2sdk!4v1700000000000!5m2!1sen!2sdk'
   },
   {
-    id: 'branch-ghana',
+    id: 'branch-ghana-accra',
     country: 'Ghana',
     city: 'Cape Coast',
     address: 'Adjacent Regional Passport Office, Cape Coast, Ghana',
-    phone: '+233 541 269 465 or +233 532 670 899',
-    phoneRaw: '233541269465 or 233532670899',
+    regNumber: 'Tax ID: C 00067301126',
+    phone: '+233 54 126 9465',
+    phoneRaw: '233541269465',
+    email: 'info@patmosdimensiongroup.com',
+    workingHours: 'Mon - Fri: 08:00 - 17:00 (GMT)',
+    mapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2251.353723381023!2d12.6366914!3d55.6515865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46525287e07ca071%3A0xe5cd6e969a5ad56f!2sAmager%20Strandvej%2C%20K%C3%B8benhavn!5e0!3m2!1sen!2sdk!4v1700000000000!5m2!1sen!2sdk'
+  },
+  {
+    id: 'branch-ghana-kasoa',
+    country: 'Ghana',
+    city: 'Kasoa',
+    address: 'Official Town, Adjacent Galilea Market, Kasoa, Ghana',
+    regNumber: 'Tax ID: C 00067301126',
+    phone: '+233 53 267 0899',
+    phoneRaw: '233532670899',
     email: 'info@patmosdimensiongroup.com',
     workingHours: 'Mon - Fri: 08:00 - 17:00 (GMT)',
     mapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15882.90382333469!2d-0.1251347!3d5.6213769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf8566ddbb57b5%3A0xffe742886fdf4000!2sSpintex%20Rd%2C%20Accra%2C%20Ghana!5e0!3m2!1sen!2sgh!4v1700000000001!5m2!1sen!2sgh'
@@ -162,12 +176,12 @@ export const CORE_VALUES = [
 
 export const EXECUTIVES: ExecutiveItem[] = [
   {
-    id: 'exec-1',
-    name: 'Paul Toku Appiatu',
-    role: 'Director & Chief Executive Officer (CEO)',
-    bio: 'Paves the strategic vision for Patmos Dimension Group, driving bilateral commerce, international joint ventures, and governmental compliance between Scandinavian and West African hubs.',
-    email: 'info@patmosdimensiongroup.com'
-  },
+  id: 'exec-1',
+  name: 'Paul Toku Appiatu',
+  role: 'Director & Chief Executive Officer (CEO)',
+  bio: 'CEO and ACCA-qualified accountant holding an MSc in Economics and Business Administration from the University of Southern Denmark. Brings extensive cross-sector expertise in financial management, logistics, and international business development across Denmark and Ghana, with a strong commitment to integrity, innovation, and global partnership.',
+  email: 'info@patmosdimensiongroup.com'
+},,
   {
     id: 'exec-2',
     name: 'Edward Ofori',

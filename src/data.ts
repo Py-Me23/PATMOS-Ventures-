@@ -179,7 +179,7 @@ export const EXECUTIVES: ExecutiveItem[] = [
   id: 'exec-1',
   name: 'Paul Toku Appiatu',
   role: 'Director & Chief Executive Officer (CEO)',
-  bio: 'CEO and ACCA-qualified accountant holding an MSc in Economics and Business Administration from the University of Southern Denmark. Brings extensive cross-sector expertise in financial management, logistics, and international business development across Denmark and Ghana, with a strong commitment to integrity, innovation, and global partnership.',
+  bio: 'Paves the strategic vision for Patmos Dimension Group, driving bilateral commerce, international joint ventures, and governmental compliance between Scandinavian and West African hubs.',
   email: 'info@patmosdimensiongroup.com'
 },,
   {

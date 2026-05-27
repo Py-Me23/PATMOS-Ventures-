@@ -61,7 +61,7 @@ export default function AboutView({ onPageChange }: AboutViewProps) {
                 Who We Are
               </span>
               <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-brand-blue-950 tracking-tight leading-tight">
-                Our Mission & Stewardship
+                About Patmos Dimension Group
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-sans font-medium">

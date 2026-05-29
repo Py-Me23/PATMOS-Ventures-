@@ -73,14 +73,14 @@ export default function WhatsAppButton() {
 
             {/* Ghana Hub Advisor */}
             <button
-              onClick={() => openWhatsApp('233532670899', 'Ghana')}
+              onClick={() => openWhatsApp('233244982760', 'Ghana')}
               className="w-full flex items-center justify-between p-3 rounded-lg border border-gray-100 hover:border-brand-gold-300 hover:bg-brand-gold-50/30 transition-all text-left group"
             >
               <div className="flex items-center gap-2.5">
                 <span className="text-xl">🇬🇭</span>
                 <div>
                   <h5 className="font-sans font-bold text-xs text-brand-blue-900">Ghana Facilitation Desk</h5>
-                  <p className="text-[10px] text-gray-500">Cape Coast Office • +233 532 670 899</p>
+                  <p className="text-[10px] text-gray-500">Cape Coast Office • +233 244 982 760</p>
                 </div>
               </div>
               <LucideIcon name="ChevronRight" size={14} className="text-gray-400 group-hover:text-brand-gold-600 transition-transform group-hover:translate-x-0.5" />

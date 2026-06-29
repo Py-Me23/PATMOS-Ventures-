@@ -39,7 +39,6 @@ function ServiceSlideshow({
   const prev = () => setActive((p) => (p - 1 + services.length) % services.length);
   const next = () => setActive((p) => (p + 1) % services.length);
 
-  // Auto-advance every 5 seconds
   useEffect(() => {
     const t = setInterval(next, 5000);
     return () => clearInterval(t);
@@ -49,7 +48,6 @@ function ServiceSlideshow({
 
   return (
     <div className="relative max-w-3xl mx-auto">
-      {/* Slide */}
       <AnimatePresence mode="wait">
         <motion.div
           key={srv.id}
@@ -59,7 +57,6 @@ function ServiceSlideshow({
           transition={{ duration: 0.45, ease: 'easeInOut' }}
           className="rounded-2xl bg-gradient-to-br from-brand-blue-900 to-brand-blue-950 border border-white/10 shadow-xl p-8 sm:p-12 text-white flex flex-col gap-6"
         >
-          {/* Top */}
           <div className="flex items-center justify-between">
             <span className="text-[9px] uppercase font-mono tracking-widest font-black text-brand-gold-400">
               Bilateral Gateway
@@ -69,7 +66,6 @@ function ServiceSlideshow({
             </span>
           </div>
 
-          {/* Icon + Title */}
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
             <div className="w-16 h-16 shrink-0 rounded-2xl bg-brand-gold-400/15 border border-brand-gold-400/25 flex items-center justify-center text-brand-gold-400 shadow-xl">
               <LucideIcon name={srv.iconName} size={32} />
@@ -84,14 +80,12 @@ function ServiceSlideshow({
             </div>
           </div>
 
-          {/* Detailed description */}
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <p className="text-xs text-gray-300 leading-relaxed font-sans">
               {srv.detailedDescription}
             </p>
           </div>
 
-          {/* Features */}
           <ul className="space-y-2">
             {srv.features.map((f, i) => (
               <li key={i} className="flex items-start gap-2 text-xs text-gray-200 font-sans">
@@ -101,7 +95,6 @@ function ServiceSlideshow({
             ))}
           </ul>
 
-          {/* CTA */}
           <div className="pt-2 border-t border-white/10 flex items-center justify-between">
             <button
               onClick={() => onViewDetails(srv.id)}
@@ -114,7 +107,6 @@ function ServiceSlideshow({
         </motion.div>
       </AnimatePresence>
 
-      {/* Prev / Next controls */}
       <div className="flex items-center justify-center gap-4 mt-8">
         <button
           onClick={prev}
@@ -123,17 +115,15 @@ function ServiceSlideshow({
           <LucideIcon name="ChevronLeft" size={18} />
         </button>
 
-        {/* Dot indicators */}
         <div className="flex items-center gap-2">
           {services.map((_, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`rounded-full transition-all cursor-pointer ${
-                i === active
+              className={`rounded-full transition-all cursor-pointer ${i === active
                   ? 'w-6 h-2 bg-brand-gold-400'
                   : 'w-2 h-2 bg-gray-300 hover:bg-brand-gold-300'
-              }`}
+                }`}
             />
           ))}
         </div>
@@ -163,7 +153,7 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
     }, 6000);
     return () => clearInterval(timer);
   }, []);
-  
+
   const handleServiceClick = (serviceId: string) => {
     onSelectService(serviceId);
     onPageChange('contact');
@@ -178,31 +168,11 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
-    }
-  };
-
   return (
     <div id="home-view" className="space-y-0">
-      
-      {/* 1. HERO SECTION - Premium background carousel containing logistics theme imagery */}
+
+      {/* 1. HERO SECTION */}
       <section className="relative min-h-screen pt-28 md:pt-36 flex items-center bg-brand-blue-950 text-white overflow-hidden">
-        {/* Background Image Carousel with Crossfading */}
         <div className="absolute inset-0 z-0">
           <AnimatePresence mode="popLayout">
             <motion.div
@@ -221,28 +191,17 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
               />
             </motion.div>
           </AnimatePresence>
-          
-          {/* Dark luxury overlay (semi-transparent brand blue & slate combo) with increased visibility */}
           <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue-950/75 via-brand-blue-950/50 to-brand-blue-900/30 mix-blend-multiply" />
           <div className="absolute inset-0 bg-brand-blue-950/30" />
-          
-          {/* Subtly animated gradient meshes to anchor the layout */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-gold-500/10 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-brand-blue-400/5 rounded-full blur-3xl" />
-          
-          {/* Faux grid lines to retain technical look but overlay on background images */}
           <div className="absolute inset-0 bg-[radial-gradient(#ffffff04_1px,transparent_1px)] [background-size:24px_24px]"></div>
-          
-          {/* Bottom vignette gradient for seamless blending with subsequent sections */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-brand-blue-950 to-transparent pointer-events-none" />
         </div>
 
-
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 w-full py-20 text-center flex flex-col items-center justify-center z-10">
-          
-          {/* Hero text branding */}
           <div className="space-y-6 sm:space-y-8">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -254,7 +213,7 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
               </span>
             </motion.div>
 
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
@@ -266,7 +225,7 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
               </span>
             </motion.h1>
 
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
@@ -275,8 +234,7 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
               Leading Copenhagen-to-Accra gateway. We facilitate direct cargo transit, GIPC advisory, and university internship placements.
             </motion.p>
 
-            {/* Micro flags line & CTAs */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
@@ -290,7 +248,6 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
                   Explore Our Services
                   <LucideIcon name="ArrowRight" size={14} className="group-hover:translate-x-1 transition-transform" />
                 </button>
-
                 <button
                   onClick={() => onPageChange('contact')}
                   className="px-6 py-3.5 bg-brand-blue-900/40 hover:bg-brand-blue-900/70 text-white font-sans font-bold text-xs tracking-wider uppercase rounded border border-white/10 hover:border-brand-gold-400/40 active:scale-95 transition-all cursor-pointer"
@@ -300,10 +257,8 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
               </div>
             </motion.div>
           </div>
-
         </div>
 
-        {/* Irregular organic wave transition to white background */}
         <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none translate-y-[1px]">
           <svg
             viewBox="0 0 1440 120"
@@ -315,39 +270,160 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
         </div>
       </section>
 
-     
+      {/* 2. SERVICES SLIDESHOW */}
+      <section id="services-section-anchor" className="py-24 bg-white relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="font-bold text-xs uppercase tracking-widest text-brand-gold-600 font-sans px-3 py-1 rounded bg-brand-gold-50 border border-brand-gold-100 inline-block">
+              Tailored Logistics & Facilitation
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-brand-blue-950 tracking-tight">
+              What We Offer
+            </h2>
+            <p className="text-sm text-gray-500 leading-relaxed">
+              Frictionless end-to-end cargo clearing, business advisory, and program placements.
+            </p>
+          </div>
+          <ServiceSlideshow services={SERVICES} onViewDetails={handleServiceClick} />
+        </div>
+      </section>
 
-      {/* 3. SERVICES GRID SECTION - Clear, interactive bento cards */}
+      {/* 3. AGRICULTURE WORK OPPORTUNITY */}
+      <section className="py-24 bg-gray-50 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-<section id="services-section-anchor" className="py-24 bg-white relative z-10">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="font-bold text-xs uppercase tracking-widest text-brand-gold-600 font-sans px-3 py-1 rounded bg-brand-gold-50 border border-brand-gold-100 inline-block">
+              Current Opportunity
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-brand-blue-950 tracking-tight">
+              Agriculture Work Opportunity — Denmark
+            </h2>
+            <p className="text-sm text-gray-500 leading-relaxed">
+              Patmos Dimension Group is coordinating and facilitating placements for agricultural workers in Denmark. Your priority is our business.
+            </p>
+          </div>
 
-    <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-      <span className="font-bold text-xs uppercase tracking-widest text-brand-gold-600 font-sans px-3 py-1 rounded bg-brand-gold-50 border border-brand-gold-100 inline-block">
-        Tailored Logistics & Facilitation
-      </span>
-      <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-brand-blue-950 tracking-tight">
-        What We Offer
-      </h2>
-      <p className="text-sm text-gray-500 leading-relaxed">
-        Frictionless end-to-end cargo clearing, business advisory, and program placements.
-      </p>
-    </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
-    <ServiceSlideshow services={SERVICES} onViewDetails={handleServiceClick} />
+            {/* Flier Image */}
+            <div className="lg:col-span-5 flex justify-center">
+              <img
+                src="/flier.jpeg"
+                alt="Agriculture Work Opportunity Denmark Flier"
+                className="rounded-2xl shadow-2xl w-full max-w-sm object-cover border border-gray-200"
+              />
+            </div>
 
-  </div>
-</section>
+            {/* Flier Content */}
+            <div className="lg:col-span-7 space-y-8">
 
-      {/* 4. WHY CHOOSE US - High credibility values */}
+              {/* Sectors */}
+              <div className="grid grid-cols-3 gap-4">
+                {['Cattle', 'Dairy', 'Piggery'].map((sector) => (
+                  <div key={sector} className="text-center p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
+                    <LucideIcon name="Sprout" size={24} className="text-brand-gold-500 mx-auto mb-2" />
+                    <p className="font-display font-black text-sm text-brand-blue-950">{sector}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Three Columns */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+                <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 space-y-3">
+                  <h4 className="font-sans font-black text-xs uppercase tracking-wider text-brand-blue-950 border-b border-gray-100 pb-2">
+                    Who Can Apply
+                  </h4>
+                  <ul className="space-y-2">
+                    {[
+                      'Must be 18–35 years old',
+                      'Current agricultural students',
+                      'Agriculture, animal & livestock science backgrounds accepted'
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-xs text-gray-600 font-sans">
+                        <LucideIcon name="CheckCircle" size={12} className="text-brand-gold-500 mt-0.5 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 space-y-3">
+                  <h4 className="font-sans font-black text-xs uppercase tracking-wider text-brand-blue-950 border-b border-gray-100 pb-2">
+                    Requirements
+                  </h4>
+                  <ul className="space-y-2">
+                    {[
+                      'Valid Passport',
+                      'Academic Certificate & Transcript',
+                      'Current CV',
+                      'Drivers license (optional)',
+                      'IELTS minimum 3.50',
+                      'All expenses paid by candidate'
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-xs text-gray-600 font-sans">
+                        <LucideIcon name="CheckCircle" size={12} className="text-brand-gold-500 mt-0.5 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 space-y-3">
+                  <h4 className="font-sans font-black text-xs uppercase tracking-wider text-brand-blue-950 border-b border-gray-100 pb-2">
+                    Benefits
+                  </h4>
+                  <ul className="space-y-2">
+                    {[
+                      '1–3 years work contract',
+                      'Salary of €12/hr and above',
+                      'Accommodation provided',
+                      'Free healthcare',
+                      'International experience',
+                      'Work & residence permit'
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-xs text-gray-600 font-sans">
+                        <LucideIcon name="CheckCircle" size={12} className="text-brand-gold-500 mt-0.5 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4 pt-2">
+                <button
+                  onClick={() => window.open('https://wa.me/233544188300', '_blank')}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-green-500 hover:bg-green-600 text-white font-sans font-extrabold text-xs tracking-wider uppercase rounded shadow-lg transition-all cursor-pointer"
+                >
+                  <LucideIcon name="MessageCircle" size={14} />
+                  Apply via WhatsApp
+                </button>
+                <button
+                  onClick={() => onPageChange('contact')}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-brand-blue-950 hover:bg-brand-blue-900 text-white font-sans font-extrabold text-xs tracking-wider uppercase rounded shadow-lg transition-all cursor-pointer"
+                >
+                  <LucideIcon name="Mail" size={14} />
+                  Send Inquiry
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. WHY CHOOSE US */}
       <section className="py-22 bg-[#02182c] text-white relative overflow-hidden">
-        {/* Abstract design element background */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-brand-gold-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand-blue-500/10 rounded-full blur-3xl"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             <div className="lg:col-span-4 space-y-6">
               <span className="font-bold text-xs uppercase tracking-widest text-brand-gold-400 font-sans block">
                 Bilateral Compliance
@@ -358,7 +434,6 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
               <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                 We manage European compliance standards and local West African registrations transparently.
               </p>
-              
               <div className="pt-2">
                 <button
                   onClick={() => onPageChange('contact')}
@@ -376,9 +451,8 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
                 if (idx === 1) colIcon = 'Clock';
                 if (idx === 2) colIcon = 'Globe';
                 if (idx === 3) colIcon = 'Eye';
-
                 return (
-                  <div 
+                  <div
                     key={col.title}
                     className="p-6 rounded-xl bg-brand-blue-900/40 border border-brand-blue-800/60 space-y-4"
                   >
@@ -386,12 +460,8 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
                       <LucideIcon name={colIcon} size={18} />
                     </div>
                     <div className="space-y-1.5">
-                      <h3 className="font-sans font-bold text-sm text-white">
-                        {col.title}
-                      </h3>
-                      <p className="text-xs text-gray-300 leading-relaxed">
-                        {col.description}
-                      </p>
+                      <h3 className="font-sans font-bold text-sm text-white">{col.title}</h3>
+                      <p className="text-xs text-gray-300 leading-relaxed">{col.description}</p>
                     </div>
                   </div>
                 );
@@ -402,32 +472,24 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
         </div>
       </section>
 
-
-
-      {/* 5. CTA SECTION - Blue background with decorative border gold framing */}
+      {/* 5. CTA SECTION */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="relative rounded-2xl bg-gradient-to-tr from-brand-blue-950 via-brand-blue-900 to-brand-blue-950 text-white p-8 sm:p-12 lg:p-16 shadow-2xl border-2 border-brand-gold-400/20 overflow-hidden">
-            {/* Background design accents */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold-400/10 rounded-full blur-3xl transform translate-x-12 -translate-y-12"></div>
-            
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              
               <div className="lg:col-span-8 space-y-4">
                 <span className="text-[10px] sm:text-xs font-bold text-brand-gold-400 uppercase tracking-widest flex items-center gap-2">
                   <LucideIcon name="Handshake" size={14} />
                   Initiate Your Denmark-Ghana Trade Integration Today
                 </span>
-                
                 <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight">
                   Need Sea Cargo Logistics, Business Registration, or Placement Support?
                 </h2>
-                
                 <p className="text-xs sm:text-sm text-gray-300 max-w-2xl leading-relaxed">
                   Our Copenhagen, Cape Coast and Accra desks are active. Contact a bilateral coordinator today.
                 </p>
               </div>
-
               <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
                 <button
                   onClick={() => onPageChange('contact')}
@@ -435,7 +497,6 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
                 >
                   Contact Global Desks
                 </button>
-                
                 <button
                   onClick={() => handleServiceClick('consultancy-facilitation')}
                   className="text-center px-6 py-4 bg-brand-blue-900/60 hover:bg-brand-blue-800 text-white font-sans font-bold text-xs uppercase tracking-wider rounded border border-white/10 hover:border-brand-gold-400/40 transition-all cursor-pointer"
@@ -443,7 +504,6 @@ export default function HomeView({ onPageChange, onSelectService }: HomeViewProp
                   Explore Advisory Coverage
                 </button>
               </div>
-
             </div>
           </div>
         </div>
